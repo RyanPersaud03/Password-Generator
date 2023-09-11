@@ -38,19 +38,20 @@ function generatePassword(){
     specialchars = "";
   }
 
-  var passwordLength = window.prompt("Enter a desired password length between 8-128, if you provide an invalid entry, password length defaults to 8")
+  var passwordLength = parseInt (window.prompt("Enter a desired password length between 8-128, if you provide an invalid entry, password length defaults to 8"))
   // you need to validate the entry here, make sure it's a number and doesn't contain letters or special characters 
-  if ( passwordLength < 8 || passwordLength > 128){
-   passwordLength = 8 
+  while ( passwordLength < 8 || passwordLength > 128 || isNaN (passwordLength)){
+    passwordLength = parseInt (window.prompt("Please select a number to proceed"))
   }
-  
+  password = ""
   characterlist = uppercase + lowercase + specialchars
   if (characterlist.length == 0){
     // you need to handle them not entering any paramaters here
     alert("you need to select at least one of the options for password setup");
+    return password
   }
 
-  password = ""
+  
   for (let i = 0; i < passwordLength; i++) {
     password += characterlist[Math.floor(Math.random() * characterlist.length)];
   }
